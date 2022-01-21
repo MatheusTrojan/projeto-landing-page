@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;800&display=swap');
+
+body{
+    font-family: 'Public Sans', sans-serif;
+}
+
+/* o asterisco serve para estilizar todos elementos html da página 
+    abaixo, estamos zerando a margem e a padding
+    o color é para trocar a cor da fonte
+*/
+*{
+  margin: 0;
+  padding: 0;  
+  box-sizing: border-box;
+  color: #000;
+}
+/* estilizando todas as imagens para terem largura máxima de 100% em relação ao "pai" que estão
+        a porcentagem funciona de forma relativa */
+img{
+    max-width: 100%;
+}
+/* retirando a decoração (underline abaixo dos links de sites) */
+a{
+    text-decoration: none;
+}
+/* retirando as bolinhas de lista na nossa ul (unordered list) */
+ul{
+    list-style: none;
+}
+/* para clicar no link e navegar de forma suave até o conteúdo */
+html{
+    scroll-behavior: smooth;
+}
+
+/* LOGO */
+
+/*O ponto na frente chama uma classe, e colocando em sequência criamos uma espeficidade 
+    apenas o ponto logo para editar como componente o cabeçalho e rodape */
+
+.logo .imagem{
+    width: 100px;    
+}
+
+/* apenas o ponto logo para editar como componente o cabeçalho e rodapé */
+.logo{
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;   
+}
+/* TRANSITION é usado para deixar a transição do HOVER mais suave (sempre utilizar) primeiro é o tempo, depois o estilo de transição
+    sempre lembrar de colocar a transição no elemento que queremos que ela ocorra, e NÃO no HOVER 
+    >>> apenas o ponto logo ponto titulo para editar como componente o cabeçalho e rodape */
+.logo .titulo{
+    margin-left: 7px;
+    font-size: 17px;
+    transition: 0.3s ease-in-out;
+    font-weight: 800;
+}
+/* HOVER é uma pseudo classe para dizer que quando passar o mouse em cima, será estilizado de alguma forma */
+.logo .titulo:hover{
+    color: #1ED760
+}
+
+/* LOGO */
+
+/* CABEÇALHO 
+
+/* display flex serve para alinhar os itens dessa classe (por padrão ele alinha na horizontal (row), mas pode usar o flex-direction column para alinhar vertical 
+    colocar uma cor forte no background para saber onde estou mexendo, facilita a visualização 
+    SITE CSS tricks para dicas de css 
+    PADDING, essa é uma forma encurtada de formar o código. Assim significa 25px para cima e para baixo, e 0 px para esquerda e direita. É possível separar colocando padding top, left, right, bottom
+    MAX WIDTH é para limitar até onde vão os textos, 1170 é uma dimensão comum dos monitores
+    MARGIN com o auto, ele centraliza automaticamente o conteúdo na pagina (MARGIN é o espaçamento entre ELEMENTOS)
+    FLEX WRAP é para quebrar o texto para baixo quando não tiver mais espaço*/
+    
+.cabecalho {
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    padding: 25px 0;
+    max-width: 1170px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+/* utilizamos esse media para personalizar o codigo para outras plataformas (reescrever regras) 
+    como se criasse uma condição para o codigo "se o tamanho da tela for 624 pixels......
+    pressionar F12 no site para ver o tamanho que ta tela */
+@media(max-width: 624px){
+    .cabecalho{
+        justify-content: center;
+    }
+
+    .cabecalho .logo{
+        margin-bottom: 30px;
+    }
+
+    .cabecalho .menu .item a{
+        font-size: calc(0.6em + 1vw);
+    }
+}
+
+.cabecalho .navegacao .menu{
+    display: flex;
+}
+
+.cabecalho .navegacao .menu .item{
+    margin: 10px;
+}
+
+/* para editar especificamente o link (a) */
+.cabecalho .navegacao .menu .item a{
+    padding: 15px;
+    transition: 0.3s ease-in-out;
+}
+
+.cabecalho .navegacao .menu .item a:hover{
+    background-color: #1ED760;
+    color: white;    
+}
+/* CABEÇALHO */
+
+/* PAINEL */
+
+.conteudo-principal .paineis{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    position: relative;
+}
+
+@media(max-width: 900px){
+    .conteudo-principal .paineis{
+        height: 500px;
+    }
+}
+
+/* para não criar várias vezes o mesmo código, vamos estilizar todas classe imagem-painel de uma só vez
+    no repeat para a imagem nao ficar repetindo, cover para cobrir tudo, e posição para ficar centralizado
+    a largura minima é 100% e a altura também é 100% (a medida veio do pai, com altura de 700px)
+    posicionamento absoluto para ficar dentro do pai (paineis, neste caso) 
+    sempre que tiver posicionamento absoluto, é melhor que esteja dentro de uma div relative
+    NESTE CASO, os paineis vão ter uma posição absoluta, mas sempre relativo ao pai deles
+    z index para a profundidade da imagem (ordenação das "camadas"  
+    filter para dar uma opacidade na imagem */
+.conteudo-principal .paineis .imagem-painel{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    filter: brightness(70%);
+
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+/* ponto ponto barra é um comando universal para voltar as pastas (estamos na estilos.css e queremos voltar até a src*/
+.conteudo-principal .paineis .projeto1{
+    background-image: url('../imagens/painel1.jpg');
+}
+.conteudo-principal .paineis .projeto2{
+    background-image: url('../imagens/painel2.jpg');
+}
+.conteudo-principal .paineis .projeto3{
+    background-image: url('../imagens/painel3.jpg');
+}
+
+.conteudo-principal .paineis .imagem-painel.mostrar{
+    opacity: 1;
+}
+
+/* utilizar o calc para facilitar na hora do projeto fiar responsivo para várias plataformas (celular, note, etc) 
+    em é medida relativa de tamanho e vw é viewport width (tamanho da janela) para o texto sempre se adaptar a plataforma/tamanho da tela */
+.conteudo-principal .paineis .titulo{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: calc(1em + 1vw);
+}
+
+/* text indent e overflow é para esconder texto em algum elemento 
+    mas por que nao tirar o texto do html? para quem for ler o codigo saber identificar*/
+.conteudo-principal .paineis .seta{
+    background-image: url('../imagens/seta.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    text-indent: 100%;
+    overflow: hidden;
+}
+/* quando temos duas classes no mesmo elemento e queremos especificar, utilizamos o ponto sem espaço */
+.conteudo-principal .paineis .seta.btn-voltar{
+    left: 20px;
+    transform: rotateY(180deg);
+    }
+.conteudo-principal .paineis .seta.btn-avancar{
+    right: 20px;
+}
+/* PAINEL */
+
+/* QUEM SOMOS */
+
+.quem-somos {
+    background-color: #2941AB;
+}
+
+.quem-somos .conteudo {
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+/* informações devem somar 100% do tamanho */
+.quem-somos .conteudo .informacoes {
+    width: 40%;
+}
+
+.quem-somos .conteudo .imagem {
+    width: 60%;
+}
+
+.quem-somos .conteudo .informacoes .titulo {
+    font-size: 50px;
+    color: #1ED760;
+    margin-bottom: 20px;
+}
+
+.quem-somos .conteudo .informacoes .texto {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #fff;
+    font-weight: 400;
+}
+
+@media(max-width: 1200px) {
+    .quem-somos .conteudo {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 30px;
+    }
+
+    .quem-somos .conteudo .imagem {
+        display: none;
+    }
+
+    .quem-somos .conteudo .informacoes {
+        width: 100%;
+    }
+}
+
+
+/* QUEM SOMOS */
+
+/* RODAPÉ */
+/* o padding dá as distancias em ordem no sentido horário: cima, direita, baixo e esquerda */
+.rodape {
+    padding: 80px 0 20px 0;
+}
+
+.rodape .navegacao {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.rodape .redes-sociais {
+    display: flex;
+}
+
+.rodape .redes-sociais a {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+    font-size: 30px;
+    border: 2px solid #111;
+    border-radius: 50%;
+    padding: 15px;
+    width: 65px;
+    transition: 0.3s ease-in-out;
+}
+
+.rodape .redes-sociais a:hover {
+    background-color: #1ED760;
+}
+
+.rodape .navegacao .logo .imagem {
+    width: 100px;
+}
+
+.rodape .copyright {
+    margin-top: 70px;
+    text-align: center;
+}
+
+@media(max-width: 940px) {
+    .rodape .navegacao {
+        justify-content: center;
+    }
+
+    .rodape .navegacao .logo {
+        margin-bottom: 30px;
+    }
+
+    .rodape .navegacao .logo,
+    .rodape .navegacao .redes-sociais {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* RODAPÉ */
+
+/* extensao do chrome responsive viwer para verificar se a pagina está responsiva para todas plataformas */
